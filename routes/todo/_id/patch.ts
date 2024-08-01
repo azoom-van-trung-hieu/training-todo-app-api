@@ -9,10 +9,10 @@ interface RequestBody {
 }
 
 export default async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const id = Number(req.params.id);
   const { description, status } = req.body as RequestBody;
 
-  const todo = TODO_LIST.find((todo) => todo.id === +id);
+  const todo = TODO_LIST.find((todo) => todo.id === id);
 
   if (!todo) {
     return res.status(404).send({ message: "Todo not found" });
